@@ -3,6 +3,6 @@ class CreateBreed < ActiveRecord::Migration
     create_table :breed do |p|
       p.string :name
       p.integer :dog_id
-  end
+   end
   end
 end
