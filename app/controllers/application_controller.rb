@@ -13,5 +13,4 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     erb :welcome
   end
-
 end

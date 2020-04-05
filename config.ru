@@ -6,5 +6,5 @@ require './config/environment'
 
 use Rack::MethodOverride
 use DogController
-use OwnerController
+use UserController
 run ApplicationController
