@@ -1,0 +1,25 @@
+
+
+
+<h1>Edit Dogs</h1>
+
+<form action="/dogs/<%=@dog.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label>Name: </label>
+  <input type="text" name="dog[name]" value="<%=@dog.name%>"/><br />
+  <label>Description: </label>
+  <textarea rows="12" cols="80" type="text" name="dog[name]" value="<%=@dog.name%>"></textarea><br />
+  <input type="submit" value="Edit Dog">
+</form>
+
+<style>
+body {
+  background-color: brown;
+}
+
+h1 {
+  color: black;
+  margin-left: 40px;
+}
+</style>
+</head>

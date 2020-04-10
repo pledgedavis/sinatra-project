@@ -1,0 +1,23 @@
+
+
+
+<h1>Dogs</h1>
+
+<ul>
+<% @dogs.each do |dog| %>
+  <li><a href="/dogs/<%=dog.id %>"><%=dog.name %></a></li>
+<%end%>
+</ul>
+
+
+<style>
+body {
+  background-color: brown;
+}
+
+h1 {
+  color: black;
+  margin-left: 40px;
+}
+</style>
+</head>

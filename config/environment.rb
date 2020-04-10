@@ -12,4 +12,4 @@ ActiveRecord::Base.establish_connection(
 require_all 'app'
 
 
-#this file runs our application
+#this file runs my application

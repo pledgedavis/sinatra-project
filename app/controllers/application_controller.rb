@@ -10,7 +10,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    # binding.pry
+    if Helpers.logged_in?(session)
+      @user = Helpers.current_user(session)
+    end
     erb :welcome
   end
 end

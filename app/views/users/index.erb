@@ -1,1 +1,17 @@
- 
+  <h3>All Users</h3>
+
+  <% @users.each do |u| %>
+   <p> <a href="/users/<%=u.id%>"> <%= u.username.titleize %> </a></p>
+  <%end%>
+
+  <style>
+body {
+  background-color: brown;
+}
+
+h1 {
+  color: black;
+  margin-left: 40px;
+}
+</style>
+</head>

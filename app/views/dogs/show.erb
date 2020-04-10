@@ -1,0 +1,34 @@
+
+
+<html>
+<head>
+<h3><%= @dog.name %></h3>
+<p><%= @dog.second_name%></p>
+</head>
+
+<body>
+<% if Helpers.current_user(session) == @dog.user %>
+  <a href="/dogs/<%=@dog.id%>/edit">Edit Dog</a>
+  <form action="/dogs/<%=@dog.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<%end%>
+</body>
+
+<style>
+body {
+  background-color: brown;
+}
+
+h1 {
+  color: black;
+  margin-left: 40px;
+}
+</style>
+</head>
+</html>
+
+
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200404063710) do
+ActiveRecord::Schema.define(version: 20200409012244) do
 
   create_table "breed", force: :cascade do |t|
     t.string  "name"
@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 20200404063710) do
 
   create_table "dogs", force: :cascade do |t|
     t.string  "name"
-    t.integer "age"
-    t.string  "color"
+    t.string  "second_name"
     t.integer "user_id"
   end
 
