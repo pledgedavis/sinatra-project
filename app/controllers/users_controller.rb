@@ -51,6 +51,7 @@ class UserController < ApplicationController #for all information from appcontro
         session[:user_id] = user.id
         redirect to "/users/#{user.id}"
       else
+        flash[:message] = "Log into your account"
         redirect to '/signup'
       end
     end

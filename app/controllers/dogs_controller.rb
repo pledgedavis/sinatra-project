@@ -5,16 +5,13 @@ class DogController < ApplicationController #for all information from appcontrol
       erb :'dogs/index'
     end
   
-  
     get '/dogs/new' do
       if !Helpers.logged_in?(session)
         redirect '/'
       end
       erb :'dogs/new'
     end
-  
     
-  
     get '/dogs/:id' do
       if !Helpers.logged_in?(session)
         redirect '/'
@@ -25,7 +22,6 @@ class DogController < ApplicationController #for all information from appcontrol
       end
       erb :'dogs/show'
     end
-  
   
     get '/dogs/:id/edit' do
         @dog = Dog.find_by(id: params[:id])
@@ -42,37 +38,25 @@ class DogController < ApplicationController #for all information from appcontrol
         dog.user = user
         dog.save
         redirect to "/users/#{user.id}"
-      end
+    end
 
-      
+
     patch '/dogs/:id' do
-      dog = Dog.find_by(id: params[:id])
+        dog = Dog.find_by(id: params[:id])
       if dog && dog.user == Helpers.current_user(session)
         dog.update(params[:dog])
         redirect to "/dogs/#{dog.id}"
       else
         redirect to "/dogs"
-      end
     end
+   end
   
-    delete '/dogs/:id/delete' do
+   delete '/dogs/:id/delete' do
       dog = Dog.find_by(id: params[:id])
-      if dog && dog.user == Helpers.current_user(session)
-        dog.destroy
-      end
-      redirect to '/dogs'
+    if dog && dog.user == Helpers.current_user(session)
+     dog.destroy
     end
-
-
-#    get '/dogs/available' do
-    
-#     erb :'/dogs/available'
-#   end
-
-
-#   post '/dogs/available' do
-    
-#     erb :'/dogs/available'
-#   end
+     redirect to '/dogs'
+  end
 end
   
