@@ -1,5 +1,5 @@
 <h3><%= @user.username %></h3>
-
+<hr/>
 <ul>
   <% @dogs.each do |d| %>
     <li><a href="/dogs/<%=d.id%>"> <%= d.name %> </a></li>

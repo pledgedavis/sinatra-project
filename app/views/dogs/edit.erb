@@ -3,10 +3,11 @@
 <form action="/dogs/<%=@dog.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label>Name: </label>
-  <input type="text" name="dog[name]" value="<%=@dog.name%>"/><br />
-  <label>Description: </label>
-  <textarea rows="12" cols="80" type="text" name="dog[name]" value="<%=@dog.name%>"></textarea><br />
-  <input type="submit" value="Edit Dog">
+  <input type="text" name="dog[name]" value="<%=@dog.name%>"/>
+  <br/><br/>
+  <label>Second Name: </label>
+  <textarea rows="1" cols="16" type="text" name="dog[name]" value="<%=@dog.name%>"></textarea><br />
+  <input type="submit" value="Submit Changes">
 </form>
 
 <style>

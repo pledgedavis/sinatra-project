@@ -6,8 +6,17 @@ class UserController < ApplicationController #for all information from appcontro
       else
         redirect to '/'
       end
-      erb :'users/index'
+      erb :'users/index' 
     end
+
+    get '/login' do
+        if Helpers.logged_in?(session)
+          user = Helpers.current_user(session)
+          redirect to "/users/#{user.id}"
+        end
+        erb :'users/login'
+      end
+    
   
     get '/signup' do
       if Helpers.logged_in?(session)
@@ -17,7 +26,7 @@ class UserController < ApplicationController #for all information from appcontro
       erb :'users/signup'
     end
   
-    get '/users/:id' do
+    get '/users/:id' do #my get request interacts with my post /login and intepolated user id
         if Helpers.logged_in?(session) && User.find_by(id: params[:id])
           @user = User.find_by(id: params[:id])
           @dogs = @user.dogs
@@ -27,31 +36,24 @@ class UserController < ApplicationController #for all information from appcontro
         erb :'users/show'
       end
 
-    get '/login' do
-      if Helpers.logged_in?(session)
-        user = Helpers.current_user(session)
-        redirect to "/users/#{user.id}"
-      end
-      erb :'users/login'
-    end
-  
+    
     post '/login' do
       user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
+        session[:user_id] = user.id #checks the session hash if the current user id matches without the session the users id would be lost
         redirect to "/users/#{user.id}"
       else
         redirect to '/signup'
       end
     end
   
-    post '/signup' do
-      user = User.create(params)
+    post '/signup' do #uses a form method in my erb file with the action as well
+      user = User.create(params) #using create to create and save to the the new created user to the database with the attributes from my params hash
       if user.valid?
         session[:user_id] = user.id
-        redirect to "/users/#{user.id}"
+        redirect to "/users/#{user.id}" #uses interpolation to redirect to the specific /users/ page
       else
-        flash[:message] = "Log into your account"
+        # flash[:message] = "Log into your account"
         redirect to '/signup'
       end
     end

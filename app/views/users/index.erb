@@ -1,5 +1,5 @@
   <h3>All Users</h3>
-
+  <hr/>
   <% @users.each do |u| %>
    <p> <a href="/users/<%=u.id%>"> <%= u.username.titleize %> </a></p>
   <%end%>
