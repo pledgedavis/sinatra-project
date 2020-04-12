@@ -1,11 +1,11 @@
-<h1>Edit Dogs</h1>
+<h1>Edit Dogs Name</h1>
 
 <form action="/dogs/<%=@dog.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label>Name: </label>
-  <input type="text" name="dog[name]" value="<%=@dog.name%>"/>
+  <strong> <%=@dog.name%> </strong>
   <br/><br/>
-  <label>Second Name: </label>
+  <label>Name of choice: </label>
   <textarea rows="1" cols="16" type="text" name="dog[name]" value="<%=@dog.name%>"></textarea><br />
   <input type="submit" value="Submit Changes">
 </form>
