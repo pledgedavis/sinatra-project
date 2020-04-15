@@ -1,6 +1,6 @@
 class DogController < ApplicationController #for all information from appcontroller
 
-    get '/dogs' do
+    get '/dogs' do #uses a get verb/route to load all dogs 
       @dogs = Dog.all
       erb :'dogs/index'
     end
