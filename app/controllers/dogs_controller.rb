@@ -6,29 +6,32 @@ class DogController < ApplicationController #for all information from appcontrol
     end
   
     get '/dogs/new' do # checks if user is not logged in then if so redirects to the homepage
-      if !Helpers.logged_in?(session)
-        redirect '/'
-      end
+      redirect_if_not_logged_in
       erb :'dogs/new'
     end
     
     get '/dogs/:id' do
-      if !Helpers.logged_in?(session) #if user is not logged in redirect to the homepage
-        redirect '/'
-      end
+        #     @dogs = @user.dogs
+        # binding.pry
+      redirect_if_not_logged_in #if user is not logged in redirect to the homepage
+       user = User.all
       @dog = Dog.find_by(id: params[:id]) # then finds a dog  and if the dog isnt fond then redirects to the hompage 
-      if !@dog
+      # binding.pry
+      @dogs = @dog.user
+      # @user.dog
+      if !@dogs
         redirect to '/'
       end
       erb :'dogs/show'
     end
   
     get '/dogs/:id/edit' do
+      # binding.pry
         @dog = Dog.find_by(id: params[:id])
-      if !Helpers.logged_in?(session) || !@dog || @dog.user != Helpers.current_user(session) #checks if the user is not logged in or if the dog cannot be found or if the user is not the current user 
-        redirect '/'
-      end
-      erb :'/dogs/edit'
+          redirect_if_not_allowed(@dog)
+          # (dog)
+
+    erb :'/dogs/edit'
     end
   
 
@@ -42,21 +45,18 @@ class DogController < ApplicationController #for all information from appcontrol
 
 
     patch '/dogs/:id' do
-        dog = Dog.find_by(id: params[:id])
-      if dog && dog.user == Helpers.current_user(session) #checks if current user and dog is the current logged in user 
-        dog.update(params[:dog])
-        redirect to "/dogs/#{dog.id}"
-      else
-        redirect to "/dogs"
+        @dog = Dog.find_by(id: params[:id])
+          redirect_if_not_allowed(@dog)  
+          @dog.update(params[:dog])
+        redirect to "/dogs/#{@dog.id}"
     end
-   end
   
-   delete '/dogs/:id/delete' do
+    delete '/dogs/:id/delete' do 
       dog = Dog.find_by(id: params[:id])
-    if dog && dog.user == Helpers.current_user(session)
-     dog.destroy
-    end
-     redirect to '/dogs'
+      redirect_if_not_allowed(dog)
+      # binding.pry
+      dog.destroy
+      redirect to '/dogs'
   end
 end
   

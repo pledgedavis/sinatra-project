@@ -1,8 +1,9 @@
-<h1>Dogs</h1>
+<h2>Dogs</h2>
 <hr/>
 <ul>
 <% @dogs.each do |dog| %>
-  <li><a href="/dogs/<%=dog.id %>"><%=dog.name %></a></li>
+  <li><a href="/dogs/<%=dog.id %>"><%=dog.name %></a> <%=dog.user.username if dog.user%>
+  </li>
 <%end%>
 </ul>
 

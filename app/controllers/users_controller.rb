@@ -1,11 +1,12 @@
 class UserController < ApplicationController #for all information from appcontroller
    
     get '/users' do
-      if Helpers.logged_in?(session)
+      # if Helpers.logged_in?(session)
+      redirect_if_not_logged_in
         @users = User.all
-      else
-        redirect to '/'
-      end
+      # else
+      #   redirect to '/'
+      # end
       erb :'users/index' 
     end
 
@@ -49,6 +50,7 @@ class UserController < ApplicationController #for all information from appcontro
   
     post '/signup' do #uses a form method in my erb file with the action as well
       user = User.create(params) #using create to create and save to the the new created user to the database with the attributes from my params hash
+    # binding.pry
       if user.valid?
         session[:user_id] = user.id
         redirect to "/users/#{user.id}" #uses interpolation to redirect to the specific /users/ page

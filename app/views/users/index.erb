@@ -1,7 +1,10 @@
   <h3>All Users</h3>
   <hr/>
+  <em>The number next to the users name signifies how many dogs a user currently has.</em>
+  <hr/>
   <% @users.each do |u| %>
-   <p> <a href="/users/<%=u.id%>"> <%= u.username.titleize %> </a></p>
+   <p> <a href="/users/<%=u.id%>"> <%= u.username.titleize %>
+   <%= u.dogs.count %>  </a></p>
   <%end%>
 
   <style>
