@@ -33,7 +33,6 @@ class DogController < ApplicationController #for all information from appcontrol
    @current_user = user.username
    @dog = Dog.find_by(id: params[:id])
    redirect_if_not_allowed(@dog)
-          # (dog)
    erb :'/dogs/edit'
   end
   

@@ -39,7 +39,7 @@ class UserController < ApplicationController #for all information from appcontro
     end
 
     post '/login' do
-      user = User.find_by(username: params[:username])
+      user = User.find_by(username: params[:username] ,email: params[:email])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id #checks the session hash if the current user id matches without the session the users id would be lost
         redirect to "/users/#{user.id}"
