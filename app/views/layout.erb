@@ -19,10 +19,19 @@
     <p class="links"><a href="/users">View All Users</a></p>
   <%end%>
     <%= yield %>
+    
 </div>
-
+</head>
+<section>
+<% if Helpers.logged_in?(session) %>
+ <strong>Logged in as <%=@current_user %> </strong>
+ <%end%>
+</section>
+</body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
+<footer class="branding">
+        <small>&copy; 2020 <strong>Pledge Davis</strong></small>
+</footer>
 <style>
 .links { float: right;
           display: inline;
@@ -48,11 +57,13 @@ body {
   width: 300px;
 }  
 
+section { position: fixed;
+bottom: 0;
+right: 0;
+width: 300px;
+        }
+
+
 </style>
-<footer class="branding">
-        <small>&copy; 2020 <strong>Pledge Davis</strong></small>
-</footer>
-</head>
-</body>
 </html>
 

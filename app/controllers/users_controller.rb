@@ -1,14 +1,14 @@
 class UserController < ApplicationController #for all information from appcontroller
    
     get '/users' do
-      # if Helpers.logged_in?(session)
+      user = Helpers.current_user(session)
+      @current_user = user.username
       redirect_if_not_logged_in
         @users = User.all
-      # else
-      #   redirect to '/'
-      # end
+        #  binding.pry
       erb :'users/index' 
-    end
+    # end
+  end
 
     get '/login' do
         if Helpers.logged_in?(session)
@@ -28,6 +28,8 @@ class UserController < ApplicationController #for all information from appcontro
     end
   
     get '/users/:id' do #my get request interacts with my post /login and intepolated user id
+      user = Helpers.current_user(session)
+      @current_user = user.username
         if Helpers.logged_in?(session) && User.find_by(id: params[:id])
           @user = User.find_by(id: params[:id])
           @dogs = @user.dogs
