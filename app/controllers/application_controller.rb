@@ -10,24 +10,24 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do #Method displays my homepage via get route
-    if Helpers.logged_in?(session) 
-             user = Helpers.current_user(session)
-                redirect to "/users/#{user.id}"
-    end
+   if Helpers.logged_in?(session) 
+    user = Helpers.current_user(session)
+    redirect to "/users/#{user.id}"
+   end
     erb :welcome
   end
 
-    helpers do
-      def redirect_if_not_allowed(instance = nil)
-        if !Helpers.logged_in?(session) || !instance && !! instance.user != Helpers.current_user(session) 
-            redirect '/'
-        end
-      end
-
-      def redirect_if_not_logged_in
-        if !Helpers.logged_in?(session)
-          redirect '/'
-       end
+  helpers do
+    def redirect_if_not_allowed(instance = nil) 
+     if !Helpers.logged_in?(session) || !instance && !! instance.user != Helpers.current_user(session)
+       redirect '/'
      end
+    end
+
+    def redirect_if_not_logged_in
+     if !Helpers.logged_in?(session)
+      redirect '/'
+     end
+    end
   end
 end
