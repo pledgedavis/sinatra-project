@@ -2,7 +2,7 @@
 <hr/>
 <ul>
   <% @dogs.each do |d| %>
-    <li><a href="/dogs/<%=d.id%>"> <%= d.name %> </a></li>
+    <li><a href="/dogs/<%=d.id%>"> <%=d.second_name%> </a></li>
   <%end%>
 </ul>
 
