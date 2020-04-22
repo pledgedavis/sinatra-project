@@ -37,7 +37,7 @@ class UserController < ApplicationController #for all information from appcontro
      end
       erb :'users/show'
     end
-
+    
     post '/login' do
       user = User.find_by(username: params[:username] ,email: params[:email])
       if user && user.authenticate(params[:password])

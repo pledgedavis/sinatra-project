@@ -18,8 +18,9 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def redirect_if_not_allowed(instance = nil) #made equal to nil so when called on the value is optional
-     if !Helpers.logged_in?(session) || !instance && !! instance.user != Helpers.current_user(session) 
+    def redirect_if_not_allowed(instance) #Argument is set to an instance so i'm able to use instances when called upon
+     if !Helpers.logged_in?(session) || !instance || instance.user != Helpers.current_user(session) 
+      #if not logged in is false or if an instance does not exist and also is not equal to the current users session were going to redirect to the homepage
        redirect '/'
      end
     end
