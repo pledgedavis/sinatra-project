@@ -23,7 +23,7 @@
 </head>
 <section>
 <% if Helpers.logged_in?(session) %>
- <strong>Logged in as <%=@current_user %> </strong>
+ <strong>Logged in as <%=Helpers.current_user(session).username%> </strong>
  <%end%>
 </section>
 </body>

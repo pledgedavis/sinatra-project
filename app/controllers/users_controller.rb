@@ -1,11 +1,8 @@
 class UserController < ApplicationController #for all information from appcontroller
    
     get '/users' do
-      user = Helpers.current_user(session)
-      @current_user = user.username
       redirect_if_not_logged_in
         @users = User.all
-        #  binding.pry
       erb :'users/index' 
     # end
     end
@@ -27,8 +24,6 @@ class UserController < ApplicationController #for all information from appcontro
     end
   
     get '/users/:id' do #my get request interacts with my post /login and intepolated user id
-      user = Helpers.current_user(session)
-      @current_user = user.username
      if Helpers.logged_in?(session) && User.find_by(id: params[:id])
       @user = User.find_by(id: params[:id])
       @dogs = @user.dogs
@@ -50,7 +45,6 @@ class UserController < ApplicationController #for all information from appcontro
   
     post '/signup' do #uses a form method in my erb file with the action as well
       user = User.create(params) #using create to create and save to the the new created user to the database with the attributes from my params hash
-    # binding.pry
       if user.valid?
         session[:user_id] = user.id
         redirect to "/users/#{user.id}" #uses interpolation to redirect to the specific /users/ page
