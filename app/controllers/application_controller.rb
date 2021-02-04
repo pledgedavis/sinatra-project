@@ -9,6 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret" #helps set the password
   end
 
+
   get "/" do #Method displays my homepage via get route
    if Helpers.logged_in?(session) 
     user = Helpers.current_user(session)

@@ -16,15 +16,15 @@ class DogController < ApplicationController #for all information from appcontrol
     redirect_if_not_logged_in #if user is not logged in redirect to the homepage
     @dog = Dog.find_by(id: params[:id]) # then finds a dog  and if the dog isnt fond then redirects to the hompage 
     dog_owner = @dog.user #allows a dog to have a user
-    # binding.pry
    if !dog_owner
     redirect to '/'
    end
     erb :'dogs/show'
   end
-  
+
   get '/dogs/:id/edit' do
    @dog = Dog.find_by(id: params[:id])
+  #  binding.pry
    redirect_if_not_allowed(@dog)
    erb :'/dogs/edit'
   end
