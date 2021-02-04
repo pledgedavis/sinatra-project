@@ -1,7 +1,10 @@
 # Welcome to the Animal Online Shelter!
 
 ## Installation
-After you are finished cloning this project you can run bundle install to make gems available
+After you are finished cloning this project 
+### Install dependencies 
+Run 'bundle install' and or 'bundle update' to update dependencies
+### Run the app
 To run my app you have to run, bin ruby/run file
 Then you enter everything as it is displayed
 
