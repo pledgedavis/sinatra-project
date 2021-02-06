@@ -25,7 +25,6 @@ class UserController < ApplicationController #for all information from appcontro
     get '/users/:id' do #my get request interacts with my post /login and intepolated user id
      if Helpers.logged_in?(session) && User.find_by(id: params[:id])
       @user = User.find_by(id: params[:id])
-      # binding.pry
       @dogs = @user.dogs
      else
       redirect to '/'
@@ -49,7 +48,6 @@ class UserController < ApplicationController #for all information from appcontro
         session[:user_id] = user.id
         redirect to "/users/#{user.id}" #uses interpolation to redirect to the specific /users/ page
       else
-        # flash[:message] = "Log into your account"
         redirect to '/signup'
       end
     end

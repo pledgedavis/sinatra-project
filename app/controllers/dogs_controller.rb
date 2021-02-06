@@ -24,7 +24,6 @@ class DogController < ApplicationController #for all information from appcontrol
 
   get '/dogs/:id/edit' do
    @dog = Dog.find_by(id: params[:id])
-  #  binding.pry
    redirect_if_not_allowed(@dog)
    erb :'/dogs/edit'
   end
