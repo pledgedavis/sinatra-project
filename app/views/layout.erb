@@ -13,10 +13,10 @@
 <div class="wrapper">
   <% if Helpers.logged_in?(session) %>
     <p class="links"><a href="/logout" class="logout">Log Out</a></p>
-    <p class="links"><a href="/users/<%=Helpers.current_user(session).id if Helpers.logged_in?(session)%>">My Dogs</a></p>
-    <p class="links"><a href="/dogs/new">Get A New Dog</a></p>
-    <p class="links"><a href="/dogs">View All Dogs</a></p>
-    <p class="links"><a href="/users">View All Users</a></p>
+    <p class="links"><a href="/users/<%=Helpers.current_user(session).id if Helpers.logged_in?(session)%>">My Dogs</a> | </p>
+    <p class="links"><a href="/dogs/new">Get A New Dog</a> | </p>
+    <p class="links"><a href="/dogs">View All Dogs</a> | </p>
+    <p class="links"><a href="/users">View All Users</a> | </p>
   <%end%>
     <%= yield %>
 </div>
